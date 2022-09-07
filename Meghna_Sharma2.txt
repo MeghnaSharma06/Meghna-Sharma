@@ -1,0 +1,104 @@
+CREATE TABLE dbo.Branch(
+Branch_id int,
+Country varchar (30) not null,
+Branch varchar(30) not null,
+Total_Product_Purchased int, 
+Total_Product_Selled int,
+Total_Amount_Purchasing float,
+Total_Amount_Selling float,
+Date date,
+Primary Key(Branch_id)
+)
+
+CREATE TABLE ProductCategory(
+Product_category int,
+Name varchar(200),
+Code int,
+Description varchar(500),
+Primary Key (Product_category),
+)
+
+
+
+create table [dbo].[Product_Vendor](
+  Vendor_ID  int,
+  Company_code varchar(30),
+  Company_Name  varchar(200),
+  Description    varchar(500),
+  Country_code    int,
+  Branch_id   int,
+  Address_city varchar(500),
+  Address_state varchar(200),
+  Address_postal_code varchar(200),
+  Address_country_code varchar(100),
+  primary key (Vendor_ID),
+  foreign key(Branch_id) REFERENCES Inventry(Inventry_id)
+
+)
+
+Insert into Product_Vendor(Vendor_ID,Company_code,Company_Name,Description,Country_code,Branch_id, Address_city, Address_state, Address_postal_code, Address_country_code) values(601,'TG','Technogent','Hardware company',501,111,'Delhi','Delhi',110001,'IND-91')
+Insert into Product_Vendor(Vendor_ID,Company_code,Company_Name,Description,Country_code,Branch_id, Address_city, Address_state, Address_postal_code, Address_country_code) values(602,'TT','TechTrack','Electronic company',502,112,'Gurgaon','Haryana',244413,'IND-91')
+Insert into Product_Vendor(Vendor_ID,Company_code,Company_Name,Description,Country_code,Branch_id, Address_city, Address_state, Address_postal_code, Address_country_code) values(603,'SW','SwipeWire','Equipment company',503,113,'Chandigarh','Punjab',160001,'IND-91')
+Insert into Product_Vendor(Vendor_ID,Company_code,Company_Name,Description,Country_code,Branch_id, Address_city, Address_state, Address_postal_code, Address_country_code) values(604,'SP','SalePush','Car company',504,114,'Chennai','Tamil Nadu',600001,'IND-91')
+Insert into Product_Vendor(Vendor_ID,Company_code,Company_Name,Description,Country_code,Branch_id, Address_city, Address_state, Address_postal_code, Address_country_code) values(605,'MC','MediCare','Healthcare company',505,115,'Hyderabad','Telangana',500030,'IND-91')
+Insert into Product_Vendor(Vendor_ID,Company_code,Company_Name,Description,Country_code,Branch_id, Address_city, Address_state, Address_postal_code, Address_country_code) values(606,'DM','DigiMail','Digital company',506,116,'Bangalore','Karnataka',560030,'IND-91')
+Insert into Product_Vendor(Vendor_ID,Company_code,Company_Name,Description,Country_code,Branch_id, Address_city, Address_state, Address_postal_code, Address_country_code) values(607,'WM','WallMart','Grocery company',507,117,'Jaipur','Rajasthan',302001,'IND-91')
+Insert into Product_Vendor(Vendor_ID,Company_code,Company_Name,Description,Country_code,Branch_id, Address_city, Address_state, Address_postal_code, Address_country_code) values(608,'TCS','TATA','Multimedia company',508,118,'Mumbai','Maharashtra',400001,'IND-91')
+Insert into Product_Vendor(Vendor_ID,Company_code,Company_Name,Description,Country_code,Branch_id, Address_city, Address_state, Address_postal_code, Address_country_code) values(609,'CC','Coca Cola','Beverage company',509,119,'Pune','Maharashtra',400001,'IND-91')
+Insert into Product_Vendor(Vendor_ID,Company_code,Company_Name,Description,Country_code,Branch_id, Address_city, Address_state, Address_postal_code, Address_country_code) values(610,'RI','Reliance','Mobile company',510,120,'Lucknow','UP',226001,'IND-91')
+
+
+Select * From Product_Vendor;
+
+
+Create table Product(
+Product_id int,
+Prod_Name Varchar(200),
+SKU  Varchar(200),
+Description varchar(500),
+Price Float,
+Vendor_id int,
+Category_id int,
+primary key(Product_id),
+foreign key(Vendor_id) References Product_Vendor(Vendor_ID),
+foreign key(Category_id) References ProductCategory(Product_category)
+)
+
+
+
+Create table ProductCategory(
+Product_category int,
+Name varchar(200),
+Code int,
+Description varchar(500),
+primary key (Product_category),
+
+)
+
+Insert into ProductCategory(Product_category,Name,Code,Description) values(500, 'keyboard', 101, 'Computers')
+Insert into ProductCategory(Product_category,Name,Code,Description) values(501, 'Pipes', 102, 'Tools')
+Insert into ProductCategory(Product_category,Name,Code,Description) values(503, 'PVC Pipes', 103, 'Industrial')
+Insert into ProductCategory(Product_category,Name,Code,Description) values(504, 'car tools', 104, 'Automobile')
+Insert into ProductCategory(Product_category,Name,Code,Description) values(505, 'soaps', 105, 'Infant Products')
+Insert into ProductCategory(Product_category,Name,Code,Description) values(506, 'earphones', 106, 'Laptops')
+Insert into ProductCategory(Product_category,Name,Code,Description) values(507, 'instant food', 107, 'Food')
+Insert into ProductCategory(Product_category,Name,Code,Description) values(508, 'microwaves', 108, 'Electronics')
+Insert into ProductCategory(Product_category,Name,Code,Description) values(509, 'watches', 109, 'Luxury')
+Insert into ProductCategory(Product_category,Name,Code,Description) values(510, 'charger', 110, 'Mobile Phones')
+
+
+Insert into Product(Product_id,Prod_Name,SKU,Description,Price,Vendor_id, Category_id) values(1001,'keyboard',3000, 'Hardware company',511,1,999)
+Insert into Product(Product_id,Prod_Name,SKU,Description,Price,Vendor_id, Category_id) values(1002, 'Pipes',5000, 'Electronic company',512,2,998)
+Insert into Product(Product_id,Prod_Name,SKU,Description,Price,Vendor_id, Category_id) values(1003,'PVC Pipes',7000, 'Equipment company',513,3,997)
+Insert into Product(Product_id,Prod_Name,SKU,Description,Price,Vendor_id, Category_id) values(1004,'car tools',4000, 'Car company',514,4,996)
+Insert into Product(Product_id,Prod_Name,SKU,Description,Price,Vendor_id, Category_id) values(1005,'soaps',2000, 'Healthcare company',515,5,995)
+Insert into Product(Product_id,Prod_Name,SKU,Description,Price,Vendor_id, Category_id) values(1006,'earphones',1000, 'Digital company',516,6,994)
+Insert into Product(Product_id,Prod_Name,SKU,Description,Price,Vendor_id, Category_id) values(1007,'instant food',9000, 'Grocery company',517,7,993)
+Insert into Product(Product_id,Prod_Name,SKU,Description,Price,Vendor_id, Category_id) values(1008,'microwaves',6000, 'Multimedia company',518,8,992)
+Insert into Product(Product_id,Prod_Name,SKU,Description,Price,Vendor_id, Category_id) values(1009,'watches',8000, 'Beverage company',519,9,991)
+Insert into Product(Product_id,Prod_Name,SKU,Description,Price,Vendor_id, Category_id) values(1010,'charger',1000, 'Mobile company',520,10,990)
+
+
+Select * From Product;
+
+Select * From ProductCategory; 
